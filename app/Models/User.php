@@ -143,7 +143,7 @@ class User extends Authenticatable
         $streakAchievements = Achievement::where('category', 'streak')->get();
 
         foreach ($streakAchievements as $achievement) {
-            $criteria = json_decode($achievement->criteria);
+            $criteria = $achievement->criteria;
             if (isset($criteria->streak_days) && $this->streak >= $criteria->streak_days) {
                 $this->unlockAchievement($achievement);
             }
